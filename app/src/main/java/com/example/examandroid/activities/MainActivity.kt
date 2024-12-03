@@ -61,14 +61,16 @@ class MainActivity : AppCompatActivity() {
     }
     private fun actualizar_datos_recyclerview() {
         // Actualizar la lista desde el DAO
-        listaMovimientos.clear() // Limpia la lista actual
-        listaMovimientos.addAll(dao.findAll()) // Supongamos que `getAll` devuelve la lista actualizada
+       //listaMovimientos.clear() // Limpia la lista actual
+        //listaMovimientos.addAll(dao.findAll()) // Supongamos que `getAll` devuelve la lista actualizada
 
         // Notificar al adaptador del cambio
+
+        listaMovimientos = dao.findAll()
+
+        adapter.updateItems(listaMovimientos)
         calcular_balance()
-
-
-        adapter.notifyDataSetChanged()
+        //adapter.notifyDataSetChanged()
 
     }
 

@@ -9,7 +9,6 @@ import com.example.examandroid.utils.DataBaseManager
 
 class MovimientosDAO(val context: Context) {
     private lateinit var db: SQLiteDatabase
-    var list: MutableList<Movimientos> = mutableListOf()
 
 
     private fun open() {
@@ -48,6 +47,7 @@ class MovimientosDAO(val context: Context) {
 
     fun findAll(): MutableList<Movimientos> {
 
+        var list: MutableList<Movimientos> = mutableListOf()
         open()
 
         val projection = arrayOf(Movimientos.COLUMN_ID, Movimientos.COLUMN_CANTIDAD, Movimientos.COLUMN_FECHA)
