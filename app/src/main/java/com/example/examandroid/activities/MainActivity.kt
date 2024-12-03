@@ -1,6 +1,7 @@
 package com.example.examandroid.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,17 +30,14 @@ class MainActivity : AppCompatActivity() {
 
 
         // Configuración del RecyclerView
-      /*  adapter = AdapterMain(listaMovimientos)
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            this.adapter = adapter
-        }*/
+
 
         adapter = AdapterMain(listaMovimientos)
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        //actualizar_datos_recyclerview()
+       // actualizar_datos_recyclerview()
+        //calcular_balance()
 
 
         //listener del boton añadir
@@ -55,7 +53,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
     actualizar_datos_recyclerview()
+
 
 
     }
@@ -65,8 +65,22 @@ class MainActivity : AppCompatActivity() {
         listaMovimientos.addAll(dao.findAll()) // Supongamos que `getAll` devuelve la lista actualizada
 
         // Notificar al adaptador del cambio
+        calcular_balance()
+
 
         adapter.notifyDataSetChanged()
+
+    }
+
+    private fun calcular_balance() {
+        var balance = dao.sumarCantidad()
+        binding.txtBalance.text=balance.toString()
+        if(balance>0){
+            binding.txtBalance.setTextColor(Color.GREEN)
+        }
+        else{
+            binding.txtBalance.setTextColor(Color.RED)
+        }
 
     }
 

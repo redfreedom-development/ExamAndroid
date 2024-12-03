@@ -80,6 +80,30 @@ class MovimientosDAO(val context: Context) {
         return list
     }
 
+    fun sumarCantidad(): Int {
+        open()
+        var total = 0
+
+        try {
+            // Realiza la consulta SQL para sumar todas las cantidades
+            val query = "SELECT SUM(${Movimientos.COLUMN_CANTIDAD}) FROM ${Movimientos.TABLE_NAME}"
+            val cursor = db.rawQuery(query, null)
+
+            // Si el cursor tiene datos, obtenemos la suma
+            if (cursor.moveToFirst()) {
+                total = cursor.getInt(0) // El primer valor es la suma total de la columna 'cantidad'
+            }
+
+            cursor.close()
+        } catch (e: Exception) {
+            Log.e("DB", e.stackTraceToString())
+        } finally {
+            close()
+        }
+
+        return total
+    }
+
     }
 
 

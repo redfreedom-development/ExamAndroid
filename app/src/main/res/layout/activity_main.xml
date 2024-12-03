@@ -23,6 +23,21 @@
             android:src="@drawable/ic_add"
 
             />
+        <TextView
+            android:id="@+id/lbBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BALANCE: "
+
+
+            />
+        <TextView
+            android:id="@+id/txtBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+
+            />
 
 
 
@@ -38,5 +53,13 @@
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical"
         />
+
+
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
